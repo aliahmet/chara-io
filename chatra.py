@@ -30,7 +30,6 @@ class ChatraClient():
 
         })
 
-    # Methods
     def send_pushed_message(self, user_token, text, agent_id=None, group_id=None):
         payload = {"clientId": user_token, "text": text}
         if agent_id:
@@ -73,4 +72,6 @@ class ChatraClient():
         else:
             raise ChatraException(response.content)
 
-# chatra = 
+# Sample:
+# chatra = ChatraClient.basic_authentication("aliahmet","MyPasswordIsSoSecret")
+# chatra.send_pushed_message("Z6pPGMBchudWKu86osnhAjC35kfaLfBLs2", "Hello!")
