@@ -3,6 +3,7 @@ from json import dumps
 import requests
 
 
+
 class ChatraException(Exception):
     pass
 
@@ -29,6 +30,7 @@ class ChatraClient():
 
         })
 
+    # Methods
     def send_pushed_message(self, user_token, text, agent_id=None, group_id=None):
         payload = {"clientId": user_token, "text": text}
         if agent_id:
@@ -62,11 +64,13 @@ class ChatraClient():
         return self.request("delete", url, **kwargs)
 
     # Actual Request call & Headers
-    def request(self, url, data=None, **kwargs):
+    def request(self,method, url,**kwargs):
         kwargs['headers'] = self.headers
         url = "".join([self.base_api, url])
-        response = requests.request(url, **kwargs)
+        response = requests.request(method,url, **kwargs)
         if response.status_code == 200:
             return response.json()
         else:
             raise ChatraException(response.content)
+
+# chatra = 
